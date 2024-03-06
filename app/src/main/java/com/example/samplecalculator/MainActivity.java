@@ -32,27 +32,27 @@ public class MainActivity extends AppCompatActivity {
         switch (data){
             case "*":
                 clearResult=false;
-                Solve();
+                evaluateExpression();
                 input+="*";
                 break;
             case "+":
                 clearResult=false;
-                Solve();
+                evaluateExpression();
                 input+="+";
                 break;
             case "-":
                 clearResult=false;
-                Solve();
+                evaluateExpression();
                 input+="-";
                 break;
             case "/":
                 clearResult=false;
-                Solve();
+                evaluateExpression();
                 input+="/";
                 break;
             case "=":
                 clearResult=true;
-                Solve();
+                evaluateExpression();
                 break;
             default:
                 if(clearResult){
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         Screen.setText(input);
     }
-    public void Solve(){
+    public void evaluateExpression(){
         if(input.split("\\*").length==2){
             String numbers[]=input.split("\\*");
             try{
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 input=mul+"";
             }
             catch (Exception e){
+                showToast("An error occurred: " + e.getMessage());
             }
         }
         else if(input.split("/").length==2){
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             catch (Exception e){
+                showToast("An error occurred: " + e.getMessage());
             }
         }
         else if(input.split("\\+").length==2){
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 input=sum+"";
             }
             catch (Exception e){
+                showToast("An error occurred: " + e.getMessage());
             }
         }
         else if(input.split("\\-").length>1){
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 input=sub+"";
             }
             catch (Exception e){
+                showToast("An error occurred: " + e.getMessage());
             }
         }
         String n[]=input.split("\\.");
